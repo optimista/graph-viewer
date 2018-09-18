@@ -1,0 +1,17 @@
+/* add css styles here (optional) */
+
+.graph {
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.node {
+  position: absolute;
+
+  transition: opacity .5s;
+  -webkit-transition: opacity .5s;
+}
+
+.nodeIsHidden { opacity: 0; }
