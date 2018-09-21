@@ -63,7 +63,7 @@ export default class GraphViewer extends Component {
   }
 
   handleWheel(e) {
-    e.stopPropagation();
+    e.preventDefault();
     e.deltaY > 0 ? this.next() : this.prev();
   }
 
