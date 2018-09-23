@@ -9,7 +9,7 @@ import styles from './ButtonReplay.css'
 const ButtonReplay = ({ className, isPulsing, isShown, onClick }) => (
   <div className={classnames(styles.replay, className, { [styles.replayIsHidden]: !isShown })} onClick={onClick}>
     <Tooltip placement="left" title="replay">
-      <IconButton classes={{ root: classnames({ [styles.replayIsPulsing]: isPulsing }) }}>
+      <IconButton classes={{ root: classnames(styles.replayButton, { [styles.replayIsPulsing]: isPulsing }) }}>
         <Replay />
       </IconButton>
     </Tooltip>

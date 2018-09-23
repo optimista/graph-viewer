@@ -20,6 +20,13 @@
   100% { background-color: rgba(0, 0, 0, 0); }
 }
 
+.replayButton, .replayButton:focus {
+  padding: 8px;
+  outline: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
 .replayIsPulsing {
   background-color: rgba(0, 0, 0, 0.08) !important;
   -webkit-animation: pulse 2.5s infinite ease-in-out;
