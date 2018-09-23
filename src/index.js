@@ -30,7 +30,7 @@ export default class GraphViewer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { frame: Object.keys(props.nodes).length, nodes: {}, scrolled: false }    
+    this.state = { frame: Object.keys(props.nodes).length, nodes: {}, replayed: false, scrolled: false }    
     this.rNodes = {} // Stack for rendered nodes (height, width)
   
     // Handlers
@@ -67,7 +67,7 @@ export default class GraphViewer extends Component {
 
   handleReplayClick() {
     const scrolled = this.state.scrolled;
-    this.setState({ frame: scrolled ? 1 : 0 });
+    this.setState({ frame: scrolled ? 1 : 0, replayed: true });
   }
 
   handleWheel(e) {
@@ -81,7 +81,7 @@ export default class GraphViewer extends Component {
 
   render() {
     const { align, edges, nodes } = this.props,
-          { frame, nodes: sNodes, scrolled } = this.state,
+          { frame, nodes: sNodes, scrolled, replayed } = this.state,
           edgeIds = Object.keys(edges),
           nodeIds = Object.entries(nodes).map(([key, value]) => ({ ...value, id: key })).sort((a, b) => a.order - b.order).map(n => n.id),
           nodesRendered = nodeIds.length === Object.keys(sNodes).length,
@@ -120,7 +120,7 @@ export default class GraphViewer extends Component {
             })
           }
         </div>
-        <ButtonReplay className={styles.replay} isShown={lastFrame} onClick={this.handleReplayClick} />
+        <ButtonReplay className={styles.replay} isShown={lastFrame} onClick={this.handleReplayClick} isPulsing={!replayed} />
         <Hint isShown={showHint} /> 
       </div>
     )

@@ -21,6 +21,7 @@
 }
 
 .replayIsPulsing {
+  background-color: rgba(0, 0, 0, 0.08) !important;
   -webkit-animation: pulse 2.5s infinite ease-in-out;
   -o-animation: pulse 2.5s infinite ease-in-out;
   -ms-animation: pulse 2.5s infinite ease-in-out; 

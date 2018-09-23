@@ -6,10 +6,10 @@ import Tooltip from '@material-ui/core/Tooltip'
 
 import styles from './ButtonReplay.css'
 
-const ButtonReplay = ({ className, isShown, onClick }) => (
+const ButtonReplay = ({ className, isPulsing, isShown, onClick }) => (
   <div className={classnames(styles.replay, className, { [styles.replayIsHidden]: !isShown })} onClick={onClick}>
     <Tooltip placement="left" title="replay">
-      <IconButton classes={{ root: styles.replayIsPulsing }}>
+      <IconButton classes={{ root: classnames({ [styles.replayIsPulsing]: isPulsing }) }}>
         <Replay />
       </IconButton>
     </Tooltip>
