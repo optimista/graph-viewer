@@ -20,8 +20,11 @@
   100% { background-color: rgba(0, 0, 0, 0); }
 }
 
-.replayButton, .replayButton:focus {
-  padding: 8px;
+.replayButton {
+  padding: 8px !important;
+}
+
+.replayButton, .replayButton:focus {  
   outline: 0 !important;
   border: 0 !important;
   box-shadow: none !important;
