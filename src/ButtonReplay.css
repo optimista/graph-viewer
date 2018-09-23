@@ -6,7 +6,24 @@
   transition: color .5s, opacity .5s;
 }
 .replay:hover { color: black; }
-.replayIcon { vertical-align: bottom; }
-.replayIsHidden { opacity: 0; pointer-events: none; } 
+.replayIsHidden { opacity: 0; pointer-events: none; }
 
-.tooltip { margin: 0 6px !important; }
+@-webkit-keyframes pulse {
+  0% { background-color: rgba(0, 0, 0, 0); }
+  50% { background-color: rgba(0, 0, 0, 0.08); }
+  100% { background-color: rgba(0, 0, 0, 0); }
+}
+
+@keyframes pulse {
+  0% { background-color: rgba(0, 0, 0, 0); }
+  50% { background-color: rgba(0, 0, 0, 0.08); }
+  100% { background-color: rgba(0, 0, 0, 0); }
+}
+
+.replayIsPulsing {
+  -webkit-animation: pulse 2.5s infinite ease-in-out;
+  -o-animation: pulse 2.5s infinite ease-in-out;
+  -ms-animation: pulse 2.5s infinite ease-in-out; 
+  -moz-animation: pulse 2.5s infinite ease-in-out; 
+  animation: pulse 2.5s infinite ease-in-out;
+}
