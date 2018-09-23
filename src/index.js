@@ -30,7 +30,7 @@ export default class GraphViewer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { frame: Object.keys(props.nodes).length - 1, nodes: {}, scrolled: false }    
+    this.state = { frame: Object.keys(props.nodes).length, nodes: {}, scrolled: false }    
     this.rNodes = {} // Stack for rendered nodes (height, width)
   
     // Handlers
@@ -46,12 +46,12 @@ export default class GraphViewer extends Component {
 
   prev() {
     const frame = this.state.frame;
-    if (frame > 0) this.setState({ frame: frame - 1 });
+    if (frame > 1) this.setState({ frame: frame - 1 });
   }
 
   next() {
     const frame = this.state.frame, l = Object.keys(this.props.nodes).length;
-    if (frame < l - 1) this.setState({ frame: frame + 1, scrolled: true });
+    if (frame < l) this.setState({ frame: frame + 1, scrolled: true });
   }
 
   handleClick(e) {
@@ -66,13 +66,14 @@ export default class GraphViewer extends Component {
   }
 
   handleReplayClick() {
-    this.setState({ frame: 0 });
+    const scrolled = this.state.scrolled;
+    this.setState({ frame: scrolled ? 1 : 0 });
   }
 
   handleWheel(e) {
     const scrollingDown = e.deltaY > 0,
-          firstFrame = this.state.frame === 0,
-          lastFrame = this.state.frame === Object.keys(this.props.nodes).length - 1;
+          firstFrame = this.state.frame === 1,
+          lastFrame = this.state.frame === Object.keys(this.props.nodes).length;
     
     if ((!lastFrame && scrollingDown) || (!firstFrame && !scrollingDown)) e.preventDefault();
     scrollingDown ? this.next() : this.prev();
@@ -84,10 +85,10 @@ export default class GraphViewer extends Component {
           edgeIds = Object.keys(edges),
           nodeIds = Object.entries(nodes).map(([key, value]) => ({ ...value, id: key })).sort((a, b) => a.order - b.order).map(n => n.id),
           nodesRendered = nodeIds.length === Object.keys(sNodes).length,
-          isNodeShown = (id) => nodeIds.indexOf(id.toString()) <= frame,
+          isNodeShown = (id) => nodeIds.indexOf(id.toString()) < frame,
           gX = alignToGraphCoeff(align.h) * 100 + "%", gY = alignToGraphCoeff(align.v) * 100 + "%",
           showHint = frame === 0 && !scrolled,
-          lastFrame = frame === nodeIds.length - 1;
+          lastFrame = frame === nodeIds.length;
 
     return (
       <div className={styles.graph} onClick={this.handleClick} onWheel={this.handleWheel}>
