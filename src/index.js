@@ -6,7 +6,7 @@ import { alignToGraphCoeff } from './lib'
 import Edge from './Edge'
 import Node from './Node'
 import ButtonReplay from './ButtonReplay'
-import ScrollHint from './ScrollHint'
+import Hint from './Hint'
 import styles from './styles.css'
 
 export default class GraphViewer extends Component {
@@ -121,7 +121,7 @@ export default class GraphViewer extends Component {
           }
         </div>
         <ButtonReplay className={styles.replay} isShown={lastFrame} onClick={this.handleReplayClick} />
-        <ScrollHint isShown={showHint} /> 
+        <Hint isShown={showHint} /> 
       </div>
     )
   }

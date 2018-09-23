@@ -1,4 +1,4 @@
-/* Scroll hint */
+/* Hint */
 @-webkit-keyframes pulse {
   0% { opacity: 0; }
   50% { opacity: 0.8; }
@@ -11,12 +11,11 @@
   100% { opacity: 0; }
 }
 
-.scrollHint {
+.hint {
   left: 50%;
   position: absolute;
   top: 50%;
   text-align: center;
-  margin-top: 7px;
   font-size: 0.8em;
 
   -webkit-transform: translate(-50%, -50%);
@@ -29,7 +28,7 @@
   animation: pulse 2.5s infinite ease-in-out;  
 }
 
-.scrollHintIsHidden {  
+.hintIsHidden {  
   opacity: 0;
   pointer-events: none;
 
@@ -40,5 +39,5 @@
   animation: 0;
 }
 
-.scrollHintText { font-size: 0.9em; margin: 0; }
-.scrollHintImg { height: 48px; width: 48px; }
+.hintText { font-size: 1em; margin: 0.1em 0; }
+.hintImg { height: 48px; width: 48px; }
