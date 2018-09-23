@@ -1,6 +1,6 @@
 {
   "name": "graph-viewer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An interactive player/viewer of graphs (mind maps)",
   "author": "optimista",
   "license": "MIT",
