@@ -1,0 +1,12 @@
+.replay {
+  color: #bbb;
+  padding: 0.5em;
+
+  -webkit-transition: color .5s, opacity .5s;
+  transition: color .5s, opacity .5s;
+}
+.replay:hover { color: black; }
+.replayIcon { vertical-align: bottom; }
+.replayIsHidden { opacity: 0; pointer-events: none; } 
+
+.tooltip { margin: 0 6px !important; }

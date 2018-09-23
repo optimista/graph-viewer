@@ -5,6 +5,8 @@ import classnames from 'classnames'
 import { alignToGraphCoeff } from './lib'
 import Edge from './Edge'
 import Node from './Node'
+import ButtonReplay from './ButtonReplay'
+import ScrollHint from './ScrollHint'
 import styles from './styles.css'
 
 export default class GraphViewer extends Component {
@@ -28,12 +30,13 @@ export default class GraphViewer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { frame: 0, nodes: {} }    
+    this.state = { frame: Object.keys(props.nodes).length - 1, nodes: {}, scrolled: false }    
     this.rNodes = {} // Stack for rendered nodes (height, width)
   
     // Handlers
     this.handleClick = this.handleClick.bind(this);
     this.handleNodeMount = this.handleNodeMount.bind(this);
+    this.handleReplayClick = this.handleReplayClick.bind(this);
     this.handleWheel = this.handleWheel.bind(this);
 
     // Rest
@@ -48,7 +51,7 @@ export default class GraphViewer extends Component {
 
   next() {
     const frame = this.state.frame, l = Object.keys(this.props.nodes).length;
-    if (frame < l - 1) this.setState({ frame: frame + 1 });
+    if (frame < l - 1) this.setState({ frame: frame + 1, scrolled: true });
   }
 
   handleClick(e) {
@@ -62,19 +65,29 @@ export default class GraphViewer extends Component {
     if (lrn === lpn) this.setState({ nodes: this.rNodes });
   }
 
+  handleReplayClick() {
+    this.setState({ frame: 0 });
+  }
+
   handleWheel(e) {
-    e.preventDefault();
-    e.deltaY > 0 ? this.next() : this.prev();
+    const scrollingDown = e.deltaY > 0,
+          firstFrame = this.state.frame === 0,
+          lastFrame = this.state.frame === Object.keys(this.props.nodes).length - 1;
+    
+    if ((!lastFrame && scrollingDown) || (!firstFrame && !scrollingDown)) e.preventDefault();
+    scrollingDown ? this.next() : this.prev();
   }
 
   render() {
     const { align, edges, nodes } = this.props,
-          { frame, nodes: sNodes } = this.state,
+          { frame, nodes: sNodes, scrolled } = this.state,
           edgeIds = Object.keys(edges),
           nodeIds = Object.entries(nodes).map(([key, value]) => ({ ...value, id: key })).sort((a, b) => a.order - b.order).map(n => n.id),
           nodesRendered = nodeIds.length === Object.keys(sNodes).length,
           isNodeShown = (id) => nodeIds.indexOf(id.toString()) <= frame,
-          gX = alignToGraphCoeff(align.h) * 100 + "%", gY = alignToGraphCoeff(align.v) * 100 + "%";
+          gX = alignToGraphCoeff(align.h) * 100 + "%", gY = alignToGraphCoeff(align.v) * 100 + "%",
+          showHint = frame === 0 && !scrolled,
+          lastFrame = frame === nodeIds.length - 1;
 
     return (
       <div className={styles.graph} onClick={this.handleClick} onWheel={this.handleWheel}>
@@ -106,6 +119,8 @@ export default class GraphViewer extends Component {
             })
           }
         </div>
+        <ButtonReplay className={styles.replay} isShown={lastFrame} onClick={this.handleReplayClick} />
+        <ScrollHint isShown={showHint} /> 
       </div>
     )
   }

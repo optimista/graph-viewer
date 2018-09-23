@@ -1,0 +1,44 @@
+/* Scroll hint */
+@-webkit-keyframes pulse {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+@keyframes pulse {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+.scrollHint {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  margin-top: 7px;
+  font-size: 0.8em;
+
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  -webkit-animation: pulse 2.5s infinite ease-in-out;
+  -o-animation: pulse 2.5s infinite ease-in-out;
+  -ms-animation: pulse 2.5s infinite ease-in-out; 
+  -moz-animation: pulse 2.5s infinite ease-in-out; 
+  animation: pulse 2.5s infinite ease-in-out;  
+}
+
+.scrollHintIsHidden {  
+  opacity: 0;
+  pointer-events: none;
+
+  -webkit-animation: 0;
+  -o-animation: 0;
+  -ms-animation: 0;
+  -moz-animation: 0;
+  animation: 0;
+}
+
+.scrollHintText { font-size: 0.9em; margin: 0; }
+.scrollHintImg { height: 48px; width: 48px; }

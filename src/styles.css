@@ -26,7 +26,6 @@
 
 .edge {
   background-color: #999;
-  /*box-shadow: 0 1px rgba(0,0,0,0.4);*/
   height: 1px;
   position: absolute;
   transform-origin: left top;
@@ -39,3 +38,9 @@
 
 .graphInner { position: absolute; width: 99999px; }
 .graph { overflow: hidden; }
+
+.replay {
+  bottom: 0;
+  position: absolute;
+  right: 0;  
+}
