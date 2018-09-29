@@ -12,6 +12,11 @@
 npm install --save graph-viewer
 ```
 
+```bash
+yarn add graph-viewer
+```
+
+
 ## Usage
 
 ```jsx
@@ -31,6 +36,12 @@ export default class App extends Component {
     return <GraphViewer align={{ h: "left", v: "top" }} edges={edges} nodes={nodes} />    
   }
 }
+```
+
+```jsx
+<GraphViewer align={{ h: "left", v: "top" }} edges={edges} nodes={nodes}>
+  {(currentFrame, setFrame) => <Button className="replay" onClick={() => setFrame(0)} />}
+</GraphViewer>
 ```
 
 ## License
