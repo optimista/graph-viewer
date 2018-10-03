@@ -23,7 +23,7 @@ const styles = {
 
 // Component GraphViewer concerns the basic playing interaction of user with the graph (without UI)
 // Component Graph concerns the rendering of the graph
-class GraphViewer extends Component {
+class GraphViewer extends Component {  
   static propTypes = {
     align: Types.align,
     edges: Types.edges,
@@ -91,5 +91,6 @@ class GraphViewer extends Component {
   }
 }
 
+GraphViewer.Types = Types;
+
 export default withStyles(styles)(GraphViewer)
-export Types;
