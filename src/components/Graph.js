@@ -7,7 +7,7 @@ import Edge from './Edge'
 import Node from './Node'
 
 import { alignToCoeffGraph } from '../lib'
-import { alignType, edgesType, nodesType } from '../types'
+import * as Types from '../types'
 
 const styles = {
   graph: {
@@ -22,10 +22,10 @@ const styles = {
 
 class Graph extends Component {
   static propTypes = {
-    align: alignType, 
+    align: Types.align, 
     frame: PropTypes.number,
-    edges: edgesType,
-    nodes: nodesType
+    edges: Types.edges,
+    nodes: Types.nodes
   }
 
   constructor(props) {
