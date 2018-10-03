@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
 
 import { Graph } from './components'
+import { alignType, edgesType, nodesType } from './types'
 
 const styles = {
   root: {
@@ -24,20 +25,9 @@ const styles = {
 // Component Graph concerns the rendering of the graph
 class GraphViewer extends Component {
   static propTypes = {
-    align: PropTypes.shape({
-      h: PropTypes.oneOf(["left", "center", "right"]),
-      v: PropTypes.oneOf(["top", "center", "bottom"])
-    }),
-    edges: PropTypes.shape({  
-      head_id: PropTypes.number,
-      tail_id: PropTypes.number
-    }),
-    nodes: PropTypes.shape({
-      content: PropTypes.string,
-      order: PropTypes.number,
-      x: PropTypes.number,
-      y: PropTypes.number
-    })
+    align: alignType,
+    edges: edgesType,
+    nodes: nodesType
   }
 
   constructor(props) {

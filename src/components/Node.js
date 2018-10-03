@@ -32,7 +32,7 @@ class Node extends Component {
   }
 
   componentDidMount() {
-    this.props.onMount(this.props.id, this.el.current);
+    this.props.onMount(this.el.current);
   }
 
   render() {
