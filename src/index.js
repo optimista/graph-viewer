@@ -91,6 +91,5 @@ class GraphViewer extends Component {
   }
 }
 
-GraphViewer.Types = Types;
-
 export default withStyles(styles)(GraphViewer)
+export { Types as Types }
