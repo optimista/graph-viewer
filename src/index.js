@@ -70,11 +70,9 @@ class GraphViewer extends Component {
   }
 
   handleWheel(e) {
-    const scrollingDown = e.deltaY > 0,
-          firstFrame = this.state.frame === 1,
-          lastFrame = this.state.frame === Object.keys(this.props.nodes).length;
-    
-    if ((!lastFrame && scrollingDown) || (!firstFrame && !scrollingDown)) e.preventDefault();
+    e.preventDefault();
+
+    const scrollingDown = e.deltaY > 0;
     scrollingDown ? this.next() : this.prev();
   }
 
