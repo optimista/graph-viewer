@@ -20,6 +20,6 @@ export const nodes = PropTypes.arrayOf(PropTypes.shape({
 }))
 
 export const start = (props, propName, componentName) => {
-  const start = props[propName];
+  const start = parseInt(props[propName]);
   if (start < 0 || props["nodes"].length < start) return new Error(propName + ' is out of range');  
 };

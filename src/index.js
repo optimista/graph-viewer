@@ -33,8 +33,8 @@ class GraphViewer extends Component {
 
   constructor(props) {
     super(props);
-    
-    this.state = { frame: this.props.start || Object.keys(props.nodes).length }    
+
+    this.state = { frame: parseInt(this.props.start, 10) || Object.keys(props.nodes).length }    
   
     // Handlers
     this.handleClick = this.handleClick.bind(this);
