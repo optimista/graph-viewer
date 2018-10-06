@@ -25,15 +25,16 @@ const styles = {
 // Component Graph concerns the rendering of the graph
 class GraphViewer extends Component {  
   static propTypes = {
-    align: Types.align,
+    align: Types.align,    
     edges: Types.edges,
-    nodes: Types.nodes
+    nodes: Types.nodes,
+    start: Types.start
   }
 
   constructor(props) {
     super(props);
-
-    this.state = { frame: Object.keys(props.nodes).length }    
+    
+    this.state = { frame: this.props.start || Object.keys(props.nodes).length }    
   
     // Handlers
     this.handleClick = this.handleClick.bind(this);

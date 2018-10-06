@@ -11,6 +11,6 @@ export default class App extends Component {
             { content: "unseen", x: 50, y: 80 }
           ];
 
-    return <GraphViewer align={{ h: "left", v: "top" }} edges={edges} nodes={nodes} />
+    return <GraphViewer align={{ h: "left", v: "top" }} edges={edges} nodes={nodes} start={2} />
   }
 }
