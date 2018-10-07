@@ -21,17 +21,15 @@ const styles = {
 }
 
 class Graph extends Component {
-  static propTypes = {
-    align: Types.align, 
+  static propTypes = { 
     frame: PropTypes.number,
-    edges: Types.edges,
-    nodes: Types.nodes
+    graph: Types.graph
   }
 
   constructor(props) {
     super(props);
 
-    this.state = { frame: props.nodes.length, rNodes: {} }    
+    this.state = { frame: props.graph.nodes.length, rNodes: {} }    
     this.rNodes = {} // Stack for rendered nodes (height, width) - goes to state after all nodes have their h, w
   
     // Handlers
@@ -42,14 +40,15 @@ class Graph extends Component {
     return (el) => {
       this.rNodes[i] = { width: el.offsetWidth, height: el.offsetHeight };
     
-      const lrn = Object.keys(this.rNodes).length, lpn = this.props.nodes.length;
+      const lrn = Object.keys(this.rNodes).length, lpn = this.props.graph.nodes.length;
       if (lrn === lpn) this.setState({ rNodes: this.rNodes });
     }
   }
   
   render() {
-    const { align, classes, edges, frame, nodes } = this.props,
+    const { classes, frame, graph } = this.props,
           { rNodes, scrolled, replayed } = this.state,
+          { align, edges, nodes } = graph,
           isNodesRendered = nodes.length === Object.keys(rNodes).length,
           isNodeShown = (i) => i < frame,
           gX = alignToCoeffGraph(align.h) * 100 + "%", gY = alignToCoeffGraph(align.v) * 100 + "%";

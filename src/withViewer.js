@@ -26,9 +26,7 @@ const styles = {
 const withViewer = (WrappedComponent) => {
   class WithViewer extends Component {  
     static propTypes = {
-      align: Types.align,    
-      edges: Types.edges,
-      nodes: Types.nodes,
+      graph: Types.graph,
       start: Types.start,
       onChange: PropTypes.func
     }
@@ -36,7 +34,7 @@ const withViewer = (WrappedComponent) => {
     constructor(props) {
       super(props);
 
-      this.state = { frame: parseInt(this.props.start, 10) || Object.keys(props.nodes).length }    
+      this.state = { frame: parseInt(this.props.start, 10) || Object.keys(props.graph.nodes).length }    
   
       // Handlers
       this.handleClick = this.handleClick.bind(this);
@@ -56,7 +54,7 @@ const withViewer = (WrappedComponent) => {
     next() { this.set(this.state.frame + 1); }  
     
     set(frame) {
-      const { nodes } = this.props,
+      const nodes = this.props.graph.nodes,            
             ln = Object.keys(nodes).length;
   
       if(0 <= frame && frame <= ln) {
@@ -77,14 +75,14 @@ const withViewer = (WrappedComponent) => {
     }
 
     render() {
-      const { align, children, classes, edges, nodes } = this.props,
+      const { children, classes, graph } = this.props,
             { frame } = this.state,
             viewer = { frame: frame, set: this.set };      
           
       return (
         <Fragment>
           <div className={classes.root} onClick={this.handleClick} onWheel={this.handleWheel}>
-            <Graph align={align} edges={edges} frame={frame} nodes={nodes} />
+            <Graph frame={frame} graph={graph} />
           </div>
           <WrappedComponent viewer={viewer} />
         </Fragment>
