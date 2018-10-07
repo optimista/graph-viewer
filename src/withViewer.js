@@ -34,7 +34,7 @@ const withViewer = (WrappedComponent) => {
     constructor(props) {
       super(props);
 
-      this.state = { frame: parseInt(this.props.start, 10) || Object.keys(props.graph.nodes).length }    
+      this.state = { frame: parseInt(this.props.start, 10) || props.graph.nodes.length }    
   
       // Handlers
       this.handleClick = this.handleClick.bind(this);
@@ -55,7 +55,7 @@ const withViewer = (WrappedComponent) => {
     
     set(frame) {
       const nodes = this.props.graph.nodes,            
-            ln = Object.keys(nodes).length;
+            ln = nodes.length;
   
       if(0 <= frame && frame <= ln) {
         this.setState({ frame: frame });
