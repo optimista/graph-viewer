@@ -38,10 +38,43 @@ export default class App extends Component {
 }
 ```
 
+or
+
 ```jsx
-<GraphViewer align={{ h: "left", v: "top" }} edges={edges} nodes={nodes}>
-  {(currentFrame, setFrame) => <Button className="replay" onClick={() => setFrame(0)} />}
-</GraphViewer>
+import React, { Component } from 'react'
+
+import { withViewer } from 'graph-viewer'
+
+class MyGraphUI extends Component {
+  render () {
+    const { viewer } = this.props,
+          { frame, set } = viewer;
+
+    return (
+      <div>
+        { frame === 0 && <p>Tap or scroll to reveal the graph!</p> }
+        <button onClick={() => set(0)}>Replay</button>
+      </div>
+    )
+  }
+}
+
+export default withViewer(MyGraphUI)
+```
+
+```
+export default class App extends Component {
+  render () { 
+    const edges = [[0, 1], [1, 2]],
+          nodes = [
+            { content: "Unveil", x: 30, y: 20 },
+            { content: "the", x: 160, y: 45 },
+            { content: "unseen", x: 50, y: 80 }
+          ];
+    
+    return <MyGraphUI align={{ h: "left", v: "top" }} edges={edges} nodes={nodes} />    
+  }
+}
 ```
 
 ## License
