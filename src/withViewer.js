@@ -84,7 +84,7 @@ const withViewer = (WrappedComponent) => {
           <div className={classes.root} onClick={this.handleClick} onWheel={this.handleWheel}>
             <Graph frame={frame} graph={graph} />
           </div>
-          <WrappedComponent viewer={viewer} />
+          <WrappedComponent graph={graph} viewer={viewer} />
         </Fragment>
       )
     }
