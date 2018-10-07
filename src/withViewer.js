@@ -75,8 +75,9 @@ const withViewer = (WrappedComponent) => {
     }
 
     render() {
-      const { children, classes, graph } = this.props,
+      const { children, classes, ...other } = this.props,
             { frame } = this.state,
+            { graph } = other,
             viewer = { frame: frame, set: this.set };      
           
       return (
@@ -84,7 +85,7 @@ const withViewer = (WrappedComponent) => {
           <div className={classes.root} onClick={this.handleClick} onWheel={this.handleWheel}>
             <Graph frame={frame} graph={graph} />
           </div>
-          <WrappedComponent {...this.props} viewer={viewer} />
+          <WrappedComponent {...other} viewer={viewer} />
         </Fragment>
       )
     }
