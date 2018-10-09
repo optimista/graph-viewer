@@ -33,7 +33,9 @@ class GraphViewer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { frame: parseInt(this.props.start, 10) || props.graph.nodes.length }    
+    const start = parseInt(this.props.start, 10);
+    this.state = { frame: isNaN(start) ? props.graph.nodes.length : start }
+     
   
     // Handlers
     this.handleClick = this.handleClick.bind(this);
