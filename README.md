@@ -43,29 +43,11 @@ export default class App extends Component {
 
 or
 
-```jsx
+```
 import React, { Component } from 'react'
 
-import { withViewer } from 'graph-viewer'
+import GraphViewer from 'graph-viewer'
 
-class MyGraphUI extends Component {
-  render () {
-    const { viewer } = this.props,
-          { frame, set } = viewer;
-
-    return (
-      <div>
-        { frame === 0 && <p>Tap or scroll to reveal the graph!</p> }
-        <button onClick={() => set(0)}>Replay</button>
-      </div>
-    )
-  }
-}
-
-export default withViewer(MyGraphUI)
-```
-
-```
 export default class App extends Component {
   render () {
     const graph = {
@@ -78,7 +60,19 @@ export default class App extends Component {
             ]
           };
        
-    return <MyGraphUI graph={graph} />    
+    return (
+      <GraphViewer graph={graph}>
+        {(viewer) => {
+          const { frame, replay } = viewer;
+          return (
+            <Fragment>
+              { frame === 0 && <p>Tap or scroll to reveal the graph!</p> }
+              <button onClick={replay}>Replay</button>
+            </Fragment>
+          )
+        }}
+      </GraphViewer>
+    )
   }
 }
 ```
